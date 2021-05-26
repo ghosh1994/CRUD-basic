@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "53a5f5be-fcf9-4b64-a221-2c2abde106a5",
+		"name": "Basic CRUD App",
+		"description": "#### Basic CRUD app Collection\nCreated by Express, Node and MongoDB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fetch All Aliens",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/aliens",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"aliens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save an Alien ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Hemant\",\r\n    \"tech\": \"Java\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/aliens",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"aliens"
+					]
+				},
+				"description": "This will send an alien to database"
+			},
+			"response": [
+				{
+					"name": "Save Alien Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Swarnadeep\",\r\n    \"tech\": \"NodeJS\",\r\n    \"subscribed\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/aliens",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"aliens"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Fetch One Alien by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/aliens/60adffde91bd251df8b67cfb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"aliens",
+						"60adffde91bd251df8b67cfb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Existing data of a alien",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subscribed\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/aliens/60adffde91bd251df8b67cfb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"aliens",
+						"60adffde91bd251df8b67cfb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

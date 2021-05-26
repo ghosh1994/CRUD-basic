@@ -14,7 +14,7 @@
 We have to download mongodb 4.2 from website and run below command to start DB server
 ```"C:\Program Files\MongoDB\Server\4.2\bin\mongo.exe"```
 
-Also also have to set path
+Also also have to set path of MongoDB bin folder to use `mongod` command
 
 ### Rest API Endpoints I gonna use :
 GET : http://localhost:9000/aliens
@@ -26,11 +26,57 @@ PATCH : http://localhost:9000/aliens/<id>
 
 ### Steps:
 
-#### Step 1 : 
+#### Step 1 : Setup Env and connected with MongoDB server
+
+In ***app.js***, Setup environment and connect with MongoDB server by mongoose.
+
+```javascript
+const express = require('express');
+const mongoose = require('mongoose');
+// AlienDBex is the database name
+const url = 'mongodb://localhost/AlienDBex'
+
+// starting express server
+const app = express();
+
+// to avoid warning, using useNewUrlParser 
+mongoose.connect(url, { useNewUrlParser: true });
+
+// creating connection object, which may take some time.
+const con = mongoose.connection;
+// Print a message when connected
+con.on('open', function() {
+    console.log('Conected...');
+})
+```
 
 
 
-#### Step 2 : 
+#### Step 2 : Getting empty response in GET request
+
+In ***app.js***, created middleware, which will route traffic to alienRouter
+
+```javascript
+const alienRouter = require('./routes/aliens') // Creating router for all routing purpose in aliens.js
+app.use('/aliens', alienRouter) //Adding a middleware, which will send all '/aliens' request to alienRouter
+
+app.listen(9000, () => {
+    console.log('Server started on Port 9000') //listening server
+```
+
+In ***routes/aliens.js***, receiving all routes and sending response in GET request on http://localhost:9000/aliens
+
+```javascript
+console.log('Hello World')
+const express = require('express')
+const router = express.Router()
+
+router.get('/', (req, res) => { //this will receive all routes and send below in response
+    res.send('Get request successfully received.')
+})
+
+module.exports = router //export the 'router' module so that app.js can access 'router'
+```
 
 
 
