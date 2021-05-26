@@ -194,5 +194,26 @@ Output :
 
 
 
+#### Step 6 : Change Existing data of a Alien
 
+In  ***routes/aliens.js***, getting one specific alien by giving his id as a parameter
+
+```js
+router.patch('/:id', async(req, res) => {
+    try {
+        const alien = await Alien.findById(req.params.id)
+        alien.subscribed = res.body.subscribed
+        const a1 = await alien.save()
+        res.json(a1)
+    } catch (err) {
+        res.send('Error: ' + err)
+    }
+})
+```
+
+Then send a PATCH request in postman to `http://localhost:9000/aliens/60adffde91bd251df8b67cfb` with body value as below
+
+```json
+{ "subscribed": "true" }
+```
 
