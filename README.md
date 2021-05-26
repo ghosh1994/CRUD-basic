@@ -263,3 +263,8 @@ Then send a PATCH request in postman to `http://localhost:9000/aliens/60adffde91
 { "subscribed": "true" }
 ```
 
+
+
+### Credits
+
+- [Telusko Learning](http://www.telusko.com/)
