@@ -14,4 +14,20 @@ router.get('/', async(req, res) => { //this will receive all routes and send bel
     }
 })
 
+router.post('/', async(req, res) => {
+    const alien = new Alien({
+        name: req.body.name,
+        tech: req.body.tech,
+        subscribed: req.body.subscribed
+    })
+
+    try {
+        const a1 = await alien.save()
+        res.json(a1)
+    } catch (err) {
+        res.send('Error ' + err)
+    }
+})
+
+
 module.exports = router //export the 'router' module so that app.js can access 'router'

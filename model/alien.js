@@ -9,7 +9,7 @@ const alienSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    tech: {
+    subscribed: {
         type: Boolean,
         required: true,
         default: false

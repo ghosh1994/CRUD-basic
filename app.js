@@ -15,6 +15,8 @@ con.on('open', () => {
     console.log('Connected...'); // Print a message when connected
 })
 
+app.use(express.json()) // Telling express that I want to use JSON here
+
 const alienRouter = require('./routes/aliens') // Creating router for all routing purpose in aliens.js
 app.use('/aliens', alienRouter) //Adding a middleware, which will send all '/aliens' request to alienRouter
 

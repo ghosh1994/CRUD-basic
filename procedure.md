@@ -52,7 +52,7 @@ Setup a Model view Controller
 | Columns  | Fields      |
 
 
-Creating **alienSchema** in `alien.js` in new folder **model/**  and exporting the Schema.
+Creating **alienSchema** in new folder ***model/alien.js***  and exporting the Schema.
 ```javascript
 const mongoose = require('mongoose')
 const alienSchema = new mongoose.Schema({
@@ -64,7 +64,7 @@ const alienSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    tech: {
+    subscribed: {
         type: Boolean,
         required: true,
         default: false
@@ -75,17 +75,66 @@ const alienSchema = new mongoose.Schema({
 module.exports = mongoose.model('Alien', alienSchema);
 ```
 
-Now head over to postman and send GET request `http://localhost:9000/aliens`
+In ***routes/aliens.js***, Receive the schema and send as a reponse to client 
+
+```javascript
+const Alien = require('../model/alien')
+router.get('/', async(req, res) => { 
+    try {
+        const aliens = await Alien.find(); //Finding Alien in db and waiting for response
+        res.json(aliens) //sending whole Aliens data as a json format
+    } catch (err) {
+        res.send('Error ' + err);
+    }
+})
+```
+
+Now head over to Postman and send GET request `http://localhost:9000/aliens`
 
 We'll get Output : []
 
 
 
-#### Step 4 :
+#### Step 4 : Saving one Alien in Schema
 
+In  ***routes/aliens.js***, I am sending POST request to Save one Alien in Schema
 
+```javascript
+router.post('/', async(req, res) => {
+    const alien = new Alien({
+        name: req.body.name,
+        tech: req.body.tech,
+        subscribed: req.body.subscribed
+    })
 
+    try {
+        const a1 = await alien.save()
+        res.json(a1)
+    } catch (err) {
+        res.send('Error ' + err)
+    }
+})
+```
 
+In ***app.js***, we have to specify that we will send json type object.
+
+```javascript
+app.use(express.json()) 
+```
+
+Now send POST Req from Postman to `http://localhost:9000/aliens`, and enter below value in Body > raw > json
+
+```json
+{
+    "name": "Swarnadeep",
+    "tech": "NodeJS",
+    "subscribed": "true"
+}
+```
+
+Congratulations !! Your data has been saved in database.
+
+Fetch the whole data using GET request by same URL  `http://localhost:9000/aliens`
 
 
 
