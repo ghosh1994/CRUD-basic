@@ -138,4 +138,61 @@ Fetch the whole data using GET request by same URL  `http://localhost:9000/alien
 
 
 
+#### Step 5 : Get one specific Alien
+
+In  ***routes/aliens.js***, getting one specific alien by giving his id as a parameter
+
+```javascript
+router.get('/:id', async(req, res) => {
+    try {
+        const alien = await Alien.findById(req.params.id);
+        if (alien != null) {
+            res.json(alien)
+        } else {
+            res.send('Given id Not Found')
+        }
+    } catch (err) {
+        res.send('Error ' + err);
+    }
+})
+```
+
+For example, in our database we saved two data.
+
+```json
+[    
+	{
+        "subscribed": false,
+        "_id": "60adea69e603491c94a7b2fd",
+        "name": "Swarnadeep",
+        "tech": "Angular",
+        "__v": 0
+    },
+    {
+        "subscribed": false,
+        "_id": "60adffde91bd251df8b67cfb",
+        "name": "Hemant",
+        "tech": "Java",
+        "__v": 0
+    }
+]
+```
+
+So we send a GET request in postman to `http://localhost:9000/aliens/60adffde91bd251df8b67cfb`
+
+Output : 
+
+```json
+{
+    "subscribed": false,
+    "_id": "60adffde91bd251df8b67cfb",
+    "name": "Hemant",
+    "tech": "Java",
+    "__v": 0
+}
+```
+
+
+
+
 

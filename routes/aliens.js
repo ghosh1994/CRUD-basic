@@ -14,6 +14,19 @@ router.get('/', async(req, res) => { //this will receive all routes and send bel
     }
 })
 
+router.get('/:id', async(req, res) => {
+    try {
+        const alien = await Alien.findById(req.params.id);
+        if (alien != null) {
+            res.json(alien)
+        } else {
+            res.send('Given id Not Found')
+        }
+    } catch (err) {
+        res.send('Error ' + err);
+    }
+})
+
 router.post('/', async(req, res) => {
     const alien = new Alien({
         name: req.body.name,
