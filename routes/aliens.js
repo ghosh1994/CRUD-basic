@@ -31,7 +31,9 @@ router.post('/', async(req, res) => {
     const alien = new Alien({
         name: req.body.name,
         tech: req.body.tech,
-        subscribed: req.body.subscribed
+        subscribed: req.body.subscribed,
+        role:  req.body.role,
+        company: req.body.company,
     })
 
     try {
