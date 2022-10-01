@@ -13,6 +13,14 @@ const alienSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    role: {
+        type: String,
+        required: true
+    },
+    company: {
+        type: String,
+        required: true
     }
 })
 
