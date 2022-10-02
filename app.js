@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const url = 'mongodb://localhost/AlienDBex' // AlienDBex is the database name
+const url = 'mongodb://localhost/Swarnadeep' // AlienDBex is the database name
 
 const app = express(); // starting express server
 
@@ -12,7 +12,7 @@ mongoose.connect(url, { useNewUrlParser: true }); // to avoid warning, using use
 const con = mongoose.connection; // creating connection object, which may take some time.
 
 con.on('open', () => {
-    console.log('Connected...'); // Print a message when connected
+    console.log('Connected with port number..'); // Print a message when connected
 })
 
 app.use(express.json()) // Telling express that I want to use JSON here
